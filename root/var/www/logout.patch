@@ -1,0 +1,13 @@
+diff --git a/logout.php b/logout.php
+index c64bcb27a..a453ca256 100644
+--- a/logout.php
++++ b/logout.php
+@@ -6,7 +6,7 @@ require ("inc/parametrit.inc");
+ 
+ $query = "UPDATE kuka SET
+           session       = '',
+-          kesken        = ''
++          kesken        = 0
+           WHERE session = '$session'";
+ $result = pupe_query($query);
+ 

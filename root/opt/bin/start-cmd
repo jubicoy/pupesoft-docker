@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ ! -d /volume/dataout ]; then
+  mkdir -p /volume/dataout
+  cp -R /workdir/dataout/* /volume/dataout/
+fi
+
+if [ ! -d /volume/datain ]; then
+  mkdir -p /volume/datain
+  cp -R /workdir/datain/* /volume/datain/
+fi
+
+if [ ! -d /volume/verkkolaskut ]; then
+  mkdir -p /volume/verkkolaskut
+fi
+
+if [ ! -d /volume/verkkolaskut/ok ]; then
+  mkdir -p /volume/verkkolaskut/ok
+fi
+
+if [ ! -d /volume/verkkolaskut/orig ]; then
+  mkdir -p /volume/verkkolaskut/orig
+fi
+
+if [ ! -d /volume/verkkolaskut/error ]; then
+  mkdir -p /volume/verkkolaskut/error
+fi
+
+if [ ! -d /volume/verkkolaskut/reject ]; then
+  mkdir -p /volume/verkkolaskut/reject
+fi
+
+if [ ! -d /volume/pupe-backup ]; then
+  mkdir -p /volume/pupe-backup
+fi
+
+exec "/usr/bin/supervisord"

@@ -2,7 +2,7 @@ FROM jubicoy/nginx-php:php5-stable
 
 RUN apt-get update \
   && apt-get install -y ruby ruby-dev rubygems git php5.6-mysql php5.6-dev \
-    php5.6-xml php5.6-gd php-pear php5.6-mbstring php5.6-soap golang-go
+    php5.6-xml php5.6-gd php-pear php5.6-mbstring php5.6-soap golang-go msmtp
 
 RUN echo "clear_env = no" >> /etc/php/5.6/fpm/php-fpm.conf
 
@@ -52,5 +52,8 @@ RUN cd /var/www \
   && sed -i -e 's|BACKUPDB=".*"|BACKUPDB=$MYSQL_DATABASE|' /var/www/pupesoft.sh \
   && sed -i -e 's|BACKUPUSER=".*"|BACKUPUSER=$MYSQL_USER|' /var/www/pupesoft.sh \
   && sed -i -e 's|BACKUPPASS=".*"|BACKUPUSER=$MYSQL_PASSWORD|' /var/www/pupesoft.sh
+
+COPY conf/php.ini /etc/php/5.6/fpm/php.ini
+COPY conf/msmtp.conf /tmp/msmtp_temp
 
 CMD ["/opt/bin/start-cmd"]

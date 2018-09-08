@@ -34,4 +34,7 @@ if [ ! -d /volume/pupe-backup ]; then
   mkdir -p /volume/pupe-backup
 fi
 
+envsubst < /tmp/msmtp_temp > /tmp/msmtp
+chmod 600 /tmp/msmtp
+
 exec "/usr/bin/supervisord"
